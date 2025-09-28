@@ -3,6 +3,6 @@ import { SeriesService } from './series.service';
 import { SeriesResolver } from './series.resolver';
 
 @Module({
-  providers: [SeriesResolver, SeriesService],
+  providers: [SeriesResolver, SeriesService]
 })
 export class SeriesModule {}

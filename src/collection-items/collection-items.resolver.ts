@@ -6,10 +6,15 @@ import { UpdateCollectionItemInput } from './dto/update-collection-item.input';
 
 @Resolver(() => CollectionItem)
 export class CollectionItemsResolver {
-  constructor(private readonly collectionItemsService: CollectionItemsService) {}
+  constructor(
+    private readonly collectionItemsService: CollectionItemsService
+  ) {}
 
   @Mutation(() => CollectionItem)
-  createCollectionItem(@Args('createCollectionItemInput') createCollectionItemInput: CreateCollectionItemInput) {
+  createCollectionItem(
+    @Args('createCollectionItemInput')
+    createCollectionItemInput: CreateCollectionItemInput
+  ) {
     return this.collectionItemsService.create(createCollectionItemInput);
   }
 
@@ -24,8 +29,14 @@ export class CollectionItemsResolver {
   }
 
   @Mutation(() => CollectionItem)
-  updateCollectionItem(@Args('updateCollectionItemInput') updateCollectionItemInput: UpdateCollectionItemInput) {
-    return this.collectionItemsService.update(updateCollectionItemInput.id, updateCollectionItemInput);
+  updateCollectionItem(
+    @Args('updateCollectionItemInput')
+    updateCollectionItemInput: UpdateCollectionItemInput
+  ) {
+    return this.collectionItemsService.update(
+      updateCollectionItemInput.id,
+      updateCollectionItemInput
+    );
   }
 
   @Mutation(() => CollectionItem)

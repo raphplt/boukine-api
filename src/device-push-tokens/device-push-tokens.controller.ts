@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete
+} from '@nestjs/common';
 import { DevicePushTokensService } from './device-push-tokens.service';
 import { CreateDevicePushTokenDto } from './dto/create-device-push-token.dto';
 import { UpdateDevicePushTokenDto } from './dto/update-device-push-token.dto';
 
 @Controller('device-push-tokens')
 export class DevicePushTokensController {
-  constructor(private readonly devicePushTokensService: DevicePushTokensService) {}
+  constructor(
+    private readonly devicePushTokensService: DevicePushTokensService
+  ) {}
 
   @Post()
   create(@Body() createDevicePushTokenDto: CreateDevicePushTokenDto) {
@@ -23,7 +33,10 @@ export class DevicePushTokensController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDevicePushTokenDto: UpdateDevicePushTokenDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateDevicePushTokenDto: UpdateDevicePushTokenDto
+  ) {
     return this.devicePushTokensService.update(+id, updateDevicePushTokenDto);
   }
 

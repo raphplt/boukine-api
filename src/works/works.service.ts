@@ -12,15 +12,15 @@ export class WorksService {
     return `This action returns all works`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} work`;
   }
 
-  update(id: number, updateWorkInput: UpdateWorkInput) {
+  update(id: string, updateWorkInput: UpdateWorkInput) {
     return `This action updates a #${id} work`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} work`;
   }
 }

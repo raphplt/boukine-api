@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete
+} from '@nestjs/common';
 import { ScanJobsService } from './scan-jobs.service';
 import { CreateScanJobDto } from './dto/create-scan-job.dto';
 import { UpdateScanJobDto } from './dto/update-scan-job.dto';

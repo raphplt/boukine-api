@@ -7,7 +7,7 @@ describe('CollectionsResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CollectionsResolver, CollectionsService],
+      providers: [CollectionsResolver, CollectionsService]
     }).compile();
 
     resolver = module.get<CollectionsResolver>(CollectionsResolver);

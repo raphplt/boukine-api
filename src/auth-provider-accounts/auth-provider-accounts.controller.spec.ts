@@ -8,10 +8,12 @@ describe('AuthProviderAccountsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthProviderAccountsController],
-      providers: [AuthProviderAccountsService],
+      providers: [AuthProviderAccountsService]
     }).compile();
 
-    controller = module.get<AuthProviderAccountsController>(AuthProviderAccountsController);
+    controller = module.get<AuthProviderAccountsController>(
+      AuthProviderAccountsController
+    );
   });
 
   it('should be defined', () => {

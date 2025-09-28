@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -26,7 +28,50 @@ import { DevicePushTokensModule } from './device-push-tokens/device-push-tokens.
 import { MediaAssetsModule } from './media-assets/media-assets.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, AuthProviderAccountsModule, SessionsModule, AuthTokensModule, FollowsModule, AuthorsModule, PublishersModule, SeriesModule, WorksModule, EditionsModule, BookIdentifiersModule, CollectionsModule, UserBooksModule, CollectionItemsModule, ReviewsModule, ReactionsModule, ScanJobsModule, ImportJobsModule, ExportJobsModule, NotificationsModule, DevicePushTokensModule, MediaAssetsModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST', 'localhost'),
+        port: configService.get('DB_PORT', 5432),
+        username: configService.get('DB_USERNAME', 'postgres'),
+        password: configService.get('DB_PASSWORD', 'postgres'),
+        database: configService.get('DB_DATABASE', 'boukine'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        synchronize: true,
+        migrationsRun: false,
+        logging: configService.get('NODE_ENV') === 'development'
+      })
+    }),
+    AuthModule,
+    UsersModule,
+    AuthProviderAccountsModule,
+    SessionsModule,
+    AuthTokensModule,
+    FollowsModule,
+    AuthorsModule,
+    PublishersModule,
+    SeriesModule,
+    WorksModule,
+    EditionsModule,
+    BookIdentifiersModule,
+    CollectionsModule,
+    UserBooksModule,
+    CollectionItemsModule,
+    ReviewsModule,
+    ReactionsModule,
+    ScanJobsModule,
+    ImportJobsModule,
+    ExportJobsModule,
+    NotificationsModule,
+    DevicePushTokensModule,
+    MediaAssetsModule
+  ],
   controllers: [AppController],
   providers: [AppService]
 })

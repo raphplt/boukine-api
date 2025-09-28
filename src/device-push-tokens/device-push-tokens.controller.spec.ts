@@ -8,10 +8,12 @@ describe('DevicePushTokensController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [DevicePushTokensController],
-      providers: [DevicePushTokensService],
+      providers: [DevicePushTokensService]
     }).compile();
 
-    controller = module.get<DevicePushTokensController>(DevicePushTokensController);
+    controller = module.get<DevicePushTokensController>(
+      DevicePushTokensController
+    );
   });
 
   it('should be defined', () => {

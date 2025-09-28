@@ -9,7 +9,9 @@ export class ReactionsResolver {
   constructor(private readonly reactionsService: ReactionsService) {}
 
   @Mutation(() => Reaction)
-  createReaction(@Args('createReactionInput') createReactionInput: CreateReactionInput) {
+  createReaction(
+    @Args('createReactionInput') createReactionInput: CreateReactionInput
+  ) {
     return this.reactionsService.create(createReactionInput);
   }
 
@@ -24,8 +26,13 @@ export class ReactionsResolver {
   }
 
   @Mutation(() => Reaction)
-  updateReaction(@Args('updateReactionInput') updateReactionInput: UpdateReactionInput) {
-    return this.reactionsService.update(updateReactionInput.id, updateReactionInput);
+  updateReaction(
+    @Args('updateReactionInput') updateReactionInput: UpdateReactionInput
+  ) {
+    return this.reactionsService.update(
+      updateReactionInput.id,
+      updateReactionInput
+    );
   }
 
   @Mutation(() => Reaction)

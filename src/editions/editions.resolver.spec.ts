@@ -7,7 +7,7 @@ describe('EditionsResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [EditionsResolver, EditionsService],
+      providers: [EditionsResolver, EditionsService]
     }).compile();
 
     resolver = module.get<EditionsResolver>(EditionsResolver);

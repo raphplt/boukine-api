@@ -9,7 +9,9 @@ export class SeriesResolver {
   constructor(private readonly seriesService: SeriesService) {}
 
   @Mutation(() => Series)
-  createSeries(@Args('createSeriesInput') createSeriesInput: CreateSeriesInput) {
+  createSeries(
+    @Args('createSeriesInput') createSeriesInput: CreateSeriesInput
+  ) {
     return this.seriesService.create(createSeriesInput);
   }
 
@@ -24,7 +26,9 @@ export class SeriesResolver {
   }
 
   @Mutation(() => Series)
-  updateSeries(@Args('updateSeriesInput') updateSeriesInput: UpdateSeriesInput) {
+  updateSeries(
+    @Args('updateSeriesInput') updateSeriesInput: UpdateSeriesInput
+  ) {
     return this.seriesService.update(updateSeriesInput.id, updateSeriesInput);
   }
 

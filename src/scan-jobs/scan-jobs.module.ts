@@ -4,6 +4,6 @@ import { ScanJobsController } from './scan-jobs.controller';
 
 @Module({
   controllers: [ScanJobsController],
-  providers: [ScanJobsService],
+  providers: [ScanJobsService]
 })
 export class ScanJobsModule {}

@@ -9,7 +9,9 @@ export class EditionsResolver {
   constructor(private readonly editionsService: EditionsService) {}
 
   @Mutation(() => Edition)
-  createEdition(@Args('createEditionInput') createEditionInput: CreateEditionInput) {
+  createEdition(
+    @Args('createEditionInput') createEditionInput: CreateEditionInput
+  ) {
     return this.editionsService.create(createEditionInput);
   }
 
@@ -24,8 +26,13 @@ export class EditionsResolver {
   }
 
   @Mutation(() => Edition)
-  updateEdition(@Args('updateEditionInput') updateEditionInput: UpdateEditionInput) {
-    return this.editionsService.update(updateEditionInput.id, updateEditionInput);
+  updateEdition(
+    @Args('updateEditionInput') updateEditionInput: UpdateEditionInput
+  ) {
+    return this.editionsService.update(
+      updateEditionInput.id,
+      updateEditionInput
+    );
   }
 
   @Mutation(() => Edition)

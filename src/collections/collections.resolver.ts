@@ -9,7 +9,9 @@ export class CollectionsResolver {
   constructor(private readonly collectionsService: CollectionsService) {}
 
   @Mutation(() => Collection)
-  createCollection(@Args('createCollectionInput') createCollectionInput: CreateCollectionInput) {
+  createCollection(
+    @Args('createCollectionInput') createCollectionInput: CreateCollectionInput
+  ) {
     return this.collectionsService.create(createCollectionInput);
   }
 
@@ -24,8 +26,13 @@ export class CollectionsResolver {
   }
 
   @Mutation(() => Collection)
-  updateCollection(@Args('updateCollectionInput') updateCollectionInput: UpdateCollectionInput) {
-    return this.collectionsService.update(updateCollectionInput.id, updateCollectionInput);
+  updateCollection(
+    @Args('updateCollectionInput') updateCollectionInput: UpdateCollectionInput
+  ) {
+    return this.collectionsService.update(
+      updateCollectionInput.id,
+      updateCollectionInput
+    );
   }
 
   @Mutation(() => Collection)

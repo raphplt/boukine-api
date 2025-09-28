@@ -6,7 +6,7 @@ describe('DevicePushTokensService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DevicePushTokensService],
+      providers: [DevicePushTokensService]
     }).compile();
 
     service = module.get<DevicePushTokensService>(DevicePushTokensService);

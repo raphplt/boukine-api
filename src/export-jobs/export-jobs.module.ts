@@ -4,6 +4,6 @@ import { ExportJobsController } from './export-jobs.controller';
 
 @Module({
   controllers: [ExportJobsController],
-  providers: [ExportJobsService],
+  providers: [ExportJobsService]
 })
 export class ExportJobsModule {}

@@ -9,7 +9,9 @@ export class UserBooksResolver {
   constructor(private readonly userBooksService: UserBooksService) {}
 
   @Mutation(() => UserBook)
-  createUserBook(@Args('createUserBookInput') createUserBookInput: CreateUserBookInput) {
+  createUserBook(
+    @Args('createUserBookInput') createUserBookInput: CreateUserBookInput
+  ) {
     return this.userBooksService.create(createUserBookInput);
   }
 
@@ -24,8 +26,13 @@ export class UserBooksResolver {
   }
 
   @Mutation(() => UserBook)
-  updateUserBook(@Args('updateUserBookInput') updateUserBookInput: UpdateUserBookInput) {
-    return this.userBooksService.update(updateUserBookInput.id, updateUserBookInput);
+  updateUserBook(
+    @Args('updateUserBookInput') updateUserBookInput: UpdateUserBookInput
+  ) {
+    return this.userBooksService.update(
+      updateUserBookInput.id,
+      updateUserBookInput
+    );
   }
 
   @Mutation(() => UserBook)

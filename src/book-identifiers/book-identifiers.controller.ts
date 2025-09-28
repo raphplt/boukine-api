@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete
+} from '@nestjs/common';
 import { BookIdentifiersService } from './book-identifiers.service';
 import { CreateBookIdentifierDto } from './dto/create-book-identifier.dto';
 import { UpdateBookIdentifierDto } from './dto/update-book-identifier.dto';
 
 @Controller('book-identifiers')
 export class BookIdentifiersController {
-  constructor(private readonly bookIdentifiersService: BookIdentifiersService) {}
+  constructor(
+    private readonly bookIdentifiersService: BookIdentifiersService
+  ) {}
 
   @Post()
   create(@Body() createBookIdentifierDto: CreateBookIdentifierDto) {
@@ -23,7 +33,10 @@ export class BookIdentifiersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBookIdentifierDto: UpdateBookIdentifierDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateBookIdentifierDto: UpdateBookIdentifierDto
+  ) {
     return this.bookIdentifiersService.update(+id, updateBookIdentifierDto);
   }
 

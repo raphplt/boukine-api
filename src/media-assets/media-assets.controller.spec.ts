@@ -8,7 +8,7 @@ describe('MediaAssetsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [MediaAssetsController],
-      providers: [MediaAssetsService],
+      providers: [MediaAssetsService]
     }).compile();
 
     controller = module.get<MediaAssetsController>(MediaAssetsController);

@@ -3,6 +3,6 @@ import { CollectionItemsService } from './collection-items.service';
 import { CollectionItemsResolver } from './collection-items.resolver';
 
 @Module({
-  providers: [CollectionItemsResolver, CollectionItemsService],
+  providers: [CollectionItemsResolver, CollectionItemsService]
 })
 export class CollectionItemsModule {}

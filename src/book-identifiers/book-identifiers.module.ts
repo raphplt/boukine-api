@@ -4,6 +4,6 @@ import { BookIdentifiersController } from './book-identifiers.controller';
 
 @Module({
   controllers: [BookIdentifiersController],
-  providers: [BookIdentifiersService],
+  providers: [BookIdentifiersService]
 })
 export class BookIdentifiersModule {}

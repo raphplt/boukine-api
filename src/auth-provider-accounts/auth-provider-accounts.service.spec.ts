@@ -6,10 +6,12 @@ describe('AuthProviderAccountsService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthProviderAccountsService],
+      providers: [AuthProviderAccountsService]
     }).compile();
 
-    service = module.get<AuthProviderAccountsService>(AuthProviderAccountsService);
+    service = module.get<AuthProviderAccountsService>(
+      AuthProviderAccountsService
+    );
   });
 
   it('should be defined', () => {

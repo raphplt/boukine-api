@@ -4,6 +4,6 @@ import { DevicePushTokensController } from './device-push-tokens.controller';
 
 @Module({
   controllers: [DevicePushTokensController],
-  providers: [DevicePushTokensService],
+  providers: [DevicePushTokensService]
 })
 export class DevicePushTokensModule {}

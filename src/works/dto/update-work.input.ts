@@ -1,8 +1,8 @@
 import { CreateWorkInput } from './create-work.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateWorkInput extends PartialType(CreateWorkInput) {
-  @Field(() => Int)
-  id: number;
+  @Field()
+  id: string;
 }

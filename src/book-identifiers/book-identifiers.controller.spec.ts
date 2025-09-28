@@ -8,10 +8,12 @@ describe('BookIdentifiersController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [BookIdentifiersController],
-      providers: [BookIdentifiersService],
+      providers: [BookIdentifiersService]
     }).compile();
 
-    controller = module.get<BookIdentifiersController>(BookIdentifiersController);
+    controller = module.get<BookIdentifiersController>(
+      BookIdentifiersController
+    );
   });
 
   it('should be defined', () => {

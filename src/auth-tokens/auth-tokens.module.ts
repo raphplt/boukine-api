@@ -4,6 +4,6 @@ import { AuthTokensController } from './auth-tokens.controller';
 
 @Module({
   controllers: [AuthTokensController],
-  providers: [AuthTokensService],
+  providers: [AuthTokensService]
 })
 export class AuthTokensModule {}

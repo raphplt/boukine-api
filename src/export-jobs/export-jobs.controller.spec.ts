@@ -8,7 +8,7 @@ describe('ExportJobsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ExportJobsController],
-      providers: [ExportJobsService],
+      providers: [ExportJobsService]
     }).compile();
 
     controller = module.get<ExportJobsController>(ExportJobsController);

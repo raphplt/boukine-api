@@ -3,6 +3,6 @@ import { PublishersService } from './publishers.service';
 import { PublishersResolver } from './publishers.resolver';
 
 @Module({
-  providers: [PublishersResolver, PublishersService],
+  providers: [PublishersResolver, PublishersService]
 })
 export class PublishersModule {}

@@ -9,7 +9,9 @@ export class PublishersResolver {
   constructor(private readonly publishersService: PublishersService) {}
 
   @Mutation(() => Publisher)
-  createPublisher(@Args('createPublisherInput') createPublisherInput: CreatePublisherInput) {
+  createPublisher(
+    @Args('createPublisherInput') createPublisherInput: CreatePublisherInput
+  ) {
     return this.publishersService.create(createPublisherInput);
   }
 
@@ -24,8 +26,13 @@ export class PublishersResolver {
   }
 
   @Mutation(() => Publisher)
-  updatePublisher(@Args('updatePublisherInput') updatePublisherInput: UpdatePublisherInput) {
-    return this.publishersService.update(updatePublisherInput.id, updatePublisherInput);
+  updatePublisher(
+    @Args('updatePublisherInput') updatePublisherInput: UpdatePublisherInput
+  ) {
+    return this.publishersService.update(
+      updatePublisherInput.id,
+      updatePublisherInput
+    );
   }
 
   @Mutation(() => Publisher)

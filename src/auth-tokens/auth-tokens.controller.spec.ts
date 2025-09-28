@@ -8,7 +8,7 @@ describe('AuthTokensController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthTokensController],
-      providers: [AuthTokensService],
+      providers: [AuthTokensService]
     }).compile();
 
     controller = module.get<AuthTokensController>(AuthTokensController);

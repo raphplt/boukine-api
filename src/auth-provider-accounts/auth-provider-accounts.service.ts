@@ -16,7 +16,10 @@ export class AuthProviderAccountsService {
     return `This action returns a #${id} authProviderAccount`;
   }
 
-  update(id: number, updateAuthProviderAccountDto: UpdateAuthProviderAccountDto) {
+  update(
+    id: number,
+    updateAuthProviderAccountDto: UpdateAuthProviderAccountDto
+  ) {
     return `This action updates a #${id} authProviderAccount`;
   }
 

@@ -4,6 +4,6 @@ import { MediaAssetsController } from './media-assets.controller';
 
 @Module({
   controllers: [MediaAssetsController],
-  providers: [MediaAssetsService],
+  providers: [MediaAssetsService]
 })
 export class MediaAssetsModule {}
