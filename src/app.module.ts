@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
@@ -74,7 +73,6 @@ import { MediaAssetsModule } from './media-assets/media-assets.module';
     DevicePushTokensModule,
     MediaAssetsModule
   ],
-  controllers: [AppController],
-  providers: [AppService]
+  controllers: [AppController]
 })
 export class AppModule {}
