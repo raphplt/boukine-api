@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 config();
 
@@ -12,6 +13,7 @@ export default new DataSource({
   database: process.env.DB_DATABASE || 'boukine',
   entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/src/migrations/*{.ts,.js}'],
-  synchronize: true,
+  namingStrategy: new SnakeNamingStrategy(),
+  synchronize: false,
   logging: false
 });

@@ -37,7 +37,12 @@ export class UserBook {
   preferredEditionId: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ReadingStatus, default: ReadingStatus.TO_READ })
+  @Column({
+    type: 'enum',
+    enum: ReadingStatus,
+    enumName: 'reading_status',
+    default: ReadingStatus.TO_READ
+  })
   status: ReadingStatus;
 
   @Field(() => Int, { nullable: true })

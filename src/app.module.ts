@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AuthProviderAccountsModule } from './auth-provider-accounts/auth-provider-accounts.module';
@@ -43,7 +44,8 @@ import { MediaAssetsModule } from './media-assets/media-assets.module';
         database: configService.get('DB_DATABASE', 'boukine'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
-        synchronize: true,
+        namingStrategy: new SnakeNamingStrategy(),
+        synchronize: false,
         migrationsRun: false,
         logging: configService.get('NODE_ENV') === 'development'
       })

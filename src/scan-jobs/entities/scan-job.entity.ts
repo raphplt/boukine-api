@@ -25,11 +25,16 @@ export class ScanJob {
   userId: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ScanType })
+  @Column({ type: 'enum', enum: ScanType, enumName: 'scan_type' })
   type: ScanType;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ScanStatus, default: ScanStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: ScanStatus,
+    enumName: 'scan_status',
+    default: ScanStatus.PENDING
+  })
   status: ScanStatus;
 
   @Field({ nullable: true })

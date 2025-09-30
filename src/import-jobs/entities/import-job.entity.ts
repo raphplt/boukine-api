@@ -23,7 +23,7 @@ export class ImportJob {
   userId: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ImportSource })
+  @Column({ type: 'enum', enum: ImportSource, enumName: 'import_source' })
   source: ImportSource;
 
   @Field()
@@ -31,7 +31,12 @@ export class ImportJob {
   fileKey: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ImportStatus, default: ImportStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: ImportStatus,
+    enumName: 'import_status',
+    default: ImportStatus.PENDING
+  })
   status: ImportStatus;
 
   @Field({ nullable: true })

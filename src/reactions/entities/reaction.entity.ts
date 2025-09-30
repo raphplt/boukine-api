@@ -32,7 +32,12 @@ export class Reaction {
   entityId: string;
 
   @Field(() => String)
-  @Column({ type: 'enum', enum: ReactionType, default: ReactionType.LIKE })
+  @Column({
+    type: 'enum',
+    enum: ReactionType,
+    enumName: 'reaction_type',
+    default: ReactionType.LIKE
+  })
   type: ReactionType;
 
   @Field()
