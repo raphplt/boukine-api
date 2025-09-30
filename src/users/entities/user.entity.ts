@@ -8,7 +8,7 @@ import {
   OneToMany
 } from 'typeorm';
 import { AuthProviderAccount } from '../../auth-provider-accounts/entities/auth-provider-account.entity';
-import { UserSession } from '../../sessions/entities/session.entity';
+import { Session } from '../../auth/entities/session.entity';
 import { AuthToken } from '../../auth-tokens/entities/auth-token.entity';
 import { UserFollow } from '../../follows/entities/follow.entity';
 import { Collection } from '../../collections/entities/collection.entity';
@@ -35,18 +35,18 @@ export class User {
 
   @Field({ nullable: true })
   @Column({ type: 'timestamptz', nullable: true })
-  emailVerified: Date;
+  emailVerified: Date | null;
 
   @Column({ type: 'text', nullable: true })
-  passwordHash: string;
-
-  @Field({ nullable: true })
-  @Column({ type: 'text', nullable: true })
-  displayName: string;
+  passwordHash: string | null;
 
   @Field({ nullable: true })
   @Column({ type: 'text', nullable: true })
-  avatarUrl: string;
+  displayName: string | null;
+
+  @Field({ nullable: true })
+  @Column({ type: 'text', nullable: true })
+  avatarUrl: string | null;
 
   @Field()
   @Column({ type: 'text', default: 'fr' })
@@ -70,8 +70,8 @@ export class User {
   })
   authProviderAccounts: AuthProviderAccount[];
 
-  @OneToMany(() => UserSession, (session) => session.user, { cascade: true })
-  sessions: UserSession[];
+  @OneToMany(() => Session, (session) => session.user, { cascade: true })
+  sessions: Session[];
 
   @OneToMany(() => AuthToken, (token) => token.user, { cascade: true })
   authTokens: AuthToken[];

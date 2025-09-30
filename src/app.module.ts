@@ -6,7 +6,6 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AuthProviderAccountsModule } from './auth-provider-accounts/auth-provider-accounts.module';
-import { SessionsModule } from './sessions/sessions.module';
 import { AuthTokensModule } from './auth-tokens/auth-tokens.module';
 import { FollowsModule } from './follows/follows.module';
 import { AuthorsModule } from './authors/authors.module';
@@ -44,7 +43,7 @@ import { MediaAssetsModule } from './media-assets/media-assets.module';
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
         namingStrategy: new SnakeNamingStrategy(),
-        synchronize: false,
+        synchronize: true,
         migrationsRun: false,
         logging: configService.get('NODE_ENV') === 'development'
       })
@@ -52,7 +51,6 @@ import { MediaAssetsModule } from './media-assets/media-assets.module';
     AuthModule,
     UsersModule,
     AuthProviderAccountsModule,
-    SessionsModule,
     AuthTokensModule,
     FollowsModule,
     AuthorsModule,

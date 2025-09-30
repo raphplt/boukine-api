@@ -14,6 +14,6 @@ export default new DataSource({
   entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/src/migrations/*{.ts,.js}'],
   namingStrategy: new SnakeNamingStrategy(),
-  synchronize: false,
+  synchronize: true,
   logging: false
 });
