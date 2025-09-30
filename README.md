@@ -1,98 +1,112 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📚 Boukine API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API backend du projet **Boukine**, une application mobile de lecture et de gestion de livres (scan, recherche, informations, etc.).
+Cette API est construite avec **NestJS**, **TypeORM** et **PostgreSQL**, et expose des endpoints REST et/ou GraphQL pour la gestion des entités principales.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## ⚙️ Stack technique
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Framework** : [NestJS](https://nestjs.com/)
+- **ORM** : TypeORM
+- **Base de données** : PostgreSQL
+- **Langage** : TypeScript (ES2021)
+- **Architecture** : modulaire, DDD (Domain Driven Design) inspirée
+- **Tests** : Jest
+- **Conteneurisation** : Docker / Docker Compose
+- **CI/CD** : GitHub Actions (build, test, migrations)
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 🗄️ Base de données (PostgreSQL)
 
-## Compile and run the project
+### Principales entités
+- **users**
+  - id, email, password (hash), username
+  - relations avec `sessions`, `reviews`, `collections`
+- **books**
+  - id, isbn, title, author, publisher, published_date, cover_url
+  - possibilité d’importer via API externes (Google Books, OpenLibrary)
+- **collections**
+  - id, name, description
+  - relation N-N avec `books`
+- **reviews**
+  - id, user_id, book_id, rating, comment, created_at
+- **sessions**
+  - id, user_id, refresh_token, expires_at
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 🔑 Authentification & Sécurité
 
-# production mode
-$ npm run start:prod
-```
+- JWT (access + refresh tokens)
+- Middleware de validation NestJS
+- Rate limiting sur endpoints sensibles
+- Hashage des mots de passe via bcrypt
+- Gestion des rôles utilisateur (admin, user)
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## 🌐 API Externe & Intégrations
 
-# e2e tests
-$ npm run test:e2e
+- **Google Books API / OpenLibrary** : récupération des métadonnées livres (ISBN, titres, auteurs, couverture, etc.)
+- **Vision/Camera** (front → API) : envoi d’image pour traitement OCR (futur module)
+- **QR Code Scanner** : décodage ISBN et récupération automatique des infos livre
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Deployment
+## 📑 Endpoints REST (exemples)
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+- `POST /auth/register` → création d’un utilisateur
+- `POST /auth/login` → login et génération de tokens
+- `GET /books?search=...` → recherche dans DB + fallback vers API externe
+- `POST /books` → ajout manuel d’un livre
+- `GET /books/:id` → infos détaillées d’un livre
+- `POST /reviews` → ajouter un avis sur un livre
+- `GET /collections/:id` → récupérer une collection et ses livres
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+## 🔄 GraphQL (optionnel)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Schéma unifié (`schema.gql`) exposant les mêmes ressources que les endpoints REST.
+- Queries : `books`, `book(id)`, `collections`, `reviews`
+- Mutations : `addBook`, `addReview`, `createCollection`, `login`, `register`
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## 📂 Structure du projet
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+/src
+├── auth/ # Modules d'authentification
+├── users/ # Gestion des utilisateurs
+├── books/ # Gestion des livres
+├── collections/ # Collections personnalisées
+├── reviews/ # Avis et notations
+├── common/ # Utils, guards, interceptors
+├── database/ # Config et migrations
+└── main.ts # Point d’entrée de l’app NestJS
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+## 🚀 Attendus techniques
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- [ ] CRUD complet sur toutes les entités
+- [ ] Authentification sécurisée avec JWT + refresh token
+- [ ] Middleware global de logging et validation
+- [ ] Pagination, filtres et tri sur `/books` et `/reviews`
+- [ ] Tests unitaires et e2e minimum viables
+- [ ] Documentation auto (Swagger ou GraphQL Playground)
+- [ ] Gestion robuste des migrations TypeORM
+- [ ] Dockerfile + docker-compose.yml pour dev & prod
+- [ ] Intégration API externe (Google Books / OpenLibrary) avec fallback local
+- [ ] CI/CD : lint, test, build avant merge
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 📌 Notes
+
+- L’API doit être **scalable** : endpoints simples mais extensibles.
+- Prévoir une abstraction pour supporter plusieurs sources externes (Google Books, OpenLibrary).
+- Les agents IA peuvent s’appuyer sur ce README comme **point de repère technique** pour générer ou corriger du code.
