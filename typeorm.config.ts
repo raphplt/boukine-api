@@ -12,6 +12,6 @@ export default new DataSource({
   database: process.env.DB_DATABASE || 'boukine',
   entities: [__dirname + '/src/**/*.entity{.ts,.js}'],
   migrations: [__dirname + '/src/migrations/*{.ts,.js}'],
-  synchronize: false,
+  synchronize: true,
   logging: false
 });
